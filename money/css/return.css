@@ -1,0 +1,94 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+	
+html,
+body {
+	height: 100%;
+	overflow: hidden;
+}
+	
+.clearfix:after {
+	content: "\200B";
+	display: block;
+	height: 0;
+	clear: both;
+}
+	
+.clearfix {
+	*zoom: 1;
+}
+	
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 1.2rem;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+	
+.wrap {
+	position: relative;
+	margin: auto;
+	max-width: 640px;
+	min-width: 320px;
+	width: 100%;
+	height: 100%;
+	background: #F0EFF5;
+	overflow: hidden;
+}
+
+.pay-status {
+    position: relative;
+    height: 5rem;
+    width: 100%;
+    margin-top: 5rem;
+    background: #ffffff;
+    line-height: 5rem;
+}
+
+.success-logo{
+    padding-left: 0.44rem;
+    padding-top: 0.3rem;
+    width: 4rem;
+    height: 4rem;
+}
+
+.success-tips {
+    padding-left: 0.3rem;
+    padding-top: 0.05rem;
+    position: absolute;
+    color: #73ab38;
+    font-size: 1.34rem;
+}
+
+.pay-info {
+	margin-top: 1.5rem;
+}
+
+.pay-number, .pay-sum, .pay-way {
+    line-height: 1.98rem;
+    /*width: 7.5rem;*/
+    width: 100%;
+    height: 1.98rem;
+    font-size: 1.3rem;
+    color: #7d7d7e;
+    background: #fff;
+}
+
+.pay-sum, .pay-way {
+    margin-top: 0.2rem;
+}
+
+.pay-number span:nth-child(1), .pay-sum span:nth-child(1), .pay-way span:nth-child(1) {
+    padding-left: 0.42rem;
+}
+
+.pay-number span:nth-child(2), .pay-sum span:nth-child(2), .pay-way span:nth-child(2) {
+    padding-right: 0.42rem;
+    float: right;
+    color: #59595b;
+}

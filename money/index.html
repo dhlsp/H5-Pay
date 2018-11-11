@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="./css/index.css">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta http-equiv="Cache-Control" content="no-store" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>广州银行</title>
+		<link rel="SHORTCUT ICON" href="./img/logo.ico"/>
+	</head>
+	<body>
+		<div class="wrap">
+			<div style="text-align: center;font-size: larger;"><img src="img/logo.png" style="vertical-align:middle;" width="50px"/>广州银行</div>
+			<form class="edit_cash">
+				<div class="shuru">
+					<div style="width: 40%;">输入消费金额<span>&yen;</span></div>
+					<div id="div" style="width: 60%;"></div>
+				</div>
+			</form>
+		</div>
+		<div class="layer-content">
+			<div class="form_edit clearfix">
+				<div class="num">1</div>
+				<div class="num">2</div>
+				<div class="num">3</div>
+				<div class="back" id="remove">
+					<embed src="./img/backspace.svg"></embed>
+				</div>
+				<div class="num">4</div>
+				<div class="num">5</div>
+				<div class="num">6</div>
+				<div id="submit" class="pay">
+					<a href="javascript:return false;">
+						<div class="a-pay">
+							<p class="p">确认</p>
+							<p class="p">支付</p>
+						</div>
+					</a>
+				</div>
+				<div class="num">7</div>
+				<div class="num">8</div>
+				<div class="num">9</div>
+				<div class="back" id="pay-keybord">
+					<embed src="./img/keypad.svg"></embed>
+				</div>
+				<div class="back" id="pay-zero">0</div>
+				<div class="back" id="pay-float">.</div>
+			</div>
+		</div>
+		<script src="./js/jquery-1.8.3.min.js"></script>
+		<script src="./js/jquery.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$('.edit_cash').click(function(e){
+					$('.layer-content').animate({
+						bottom: 0
+					}, 200)
+					e.stopPropagation();
+				})
+				$('#pay-keybord').click(function(){
+					$('.layer-content').animate({
+						bottom: '-400px'
+					}, 200)
+				})
+
+				$(".layer-content").slideDown();
+				var $paymoney = $("#div");
+
+				$("#div").focus(function(){
+					$(".layer-content").slideDown();
+		       		document.activeElement.blur();
+				});
+
+				$(".num").each(function(){
+					$(this).click(function(){
+						if(($paymoney.text()).indexOf(".") != -1 && ($paymoney.text()).substring(($paymoney.text()).indexOf(".") + 1, ($paymoney.text()).length).length == 2){
+							return;
+						}
+						if($.trim($paymoney.text()) == "0"){
+							return;
+						}
+						if (parseInt($paymoney.text()) > 10000 && $paymoney.text().indexOf(".") == -1) {
+							return;
+						}
+						$('#submit').removeClass('pay-disabled').find('a').attr('href','pay-result.html');
+						$paymoney.text($paymoney.text() + $(this).text());
+					});
+				});
+				
+				$("#remove").click(function(){
+					$paymoney.text(($paymoney.text()).substring(0, ($paymoney.text()).length - 1));
+					if (!$paymoney.text()) {
+						$('#submit').addClass('pay-disabled').find('a').attr('href', 'javascript:return false;');
+					}
+				});
+				
+				$("#pay-zero").click(function(){
+					if(($paymoney.text()).indexOf(".") != -1 && ($paymoney.text()).substring(($paymoney.text()).indexOf(".") + 1, ($paymoney.text()).length).length == 2){
+						return;
+					}
+					if($.trim($paymoney.text()) == "0"){
+						return;
+					}
+					if (parseInt($paymoney.text()) > 10000 && $paymoney.text().indexOf(".") == -1) {
+						return;
+					}
+					$paymoney.text($paymoney.text() + $(this).text());
+				});
+				
+				$("#pay-float").click(function(){
+					if($.trim($paymoney.text()) == ""){
+						return;
+					}
+				
+					if(($paymoney.text()).indexOf(".") != -1){
+						return;
+					}
+					
+					if(($paymoney.text()).indexOf(".") != -1){
+						return;
+					}
+					
+					$paymoney.text($paymoney.text() + $(this).text());
+				});
+				if (!$paymoney.text()) {
+					$('#submit').addClass('pay-disabled');
+				}
+			});
+		</script>
+	</body>
+</html>
